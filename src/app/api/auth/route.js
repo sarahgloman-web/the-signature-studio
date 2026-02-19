@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const clientId = process.env.GITHUB_OAUTH_CLIENT_ID;
-  const redirectUri = `${process.env.NEXT_PUBLIC_SITE_URL || "https://the-signature-studio.vercel.app"}/api/callback`;
+  const clientId = (process.env.GITHUB_OAUTH_CLIENT_ID || "").trim();
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://the-signature-studio.vercel.app").trim();
+  const redirectUri = `${siteUrl}/api/callback`;
   const scope = "repo,user";
 
   const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}`;
