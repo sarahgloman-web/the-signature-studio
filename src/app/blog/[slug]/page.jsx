@@ -35,7 +35,7 @@ export default async function BlogPost({ params }) {
       <section className="py-16 px-6" style={{ background: BRAND.warmWhite }}>
         <article className="max-w-3xl mx-auto">
           {/* Header */}
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center justify-center gap-3 mb-6">
             <span
               className="px-3 py-1"
               style={{
@@ -65,6 +65,7 @@ export default async function BlogPost({ params }) {
           </div>
 
           <h1
+            className="text-center"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
@@ -92,6 +93,7 @@ export default async function BlogPost({ params }) {
 
           {/* Affiliate disclaimer */}
           <p
+            className="text-center"
             style={{
               fontFamily: "'Outfit', sans-serif",
               fontSize: "0.65rem",

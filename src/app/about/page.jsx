@@ -37,6 +37,7 @@ export default function AboutPage() {
           </div>
 
           <div
+            className="text-center"
             style={{
               fontFamily: "'Outfit', sans-serif",
               fontSize: "0.95rem",

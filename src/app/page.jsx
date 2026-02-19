@@ -213,7 +213,7 @@ export default function HomePage() {
               <Link
                 key={pillar.title}
                 href={pillar.href}
-                className="group text-left p-8 transition-all duration-500 hover:-translate-y-1"
+                className="group text-center p-8 transition-all duration-500 hover:-translate-y-1"
                 style={{
                   background: BRAND.cream,
                   border: `1px solid ${BRAND.blush}`,
@@ -221,7 +221,7 @@ export default function HomePage() {
                   display: "block",
                 }}
               >
-                <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center justify-center gap-4 mb-6">
                   <span className="text-3xl">{pillar.icon}</span>
                   <span
                     className="px-3 py-1"

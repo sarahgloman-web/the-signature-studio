@@ -81,7 +81,7 @@ export default function ArchivePage() {
               <div key={group.key} className="mb-12">
                 {/* Month/Year Header */}
                 <div
-                  className="flex items-center gap-4 mb-6"
+                  className="flex items-center justify-center gap-4 mb-6"
                   style={{ borderBottom: `1px solid ${BRAND.blush}`, paddingBottom: "12px" }}
                 >
                   <h2

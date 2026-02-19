@@ -85,7 +85,7 @@ export default function BlogPage() {
                   <Link
                     key={post.slug}
                     href={`/blog/${post.slug}`}
-                    className="group text-left transition-all duration-500 hover:-translate-y-1"
+                    className="group text-center transition-all duration-500 hover:-translate-y-1"
                     style={{
                       background: BRAND.cream,
                       border: `1px solid ${BRAND.blush}`,
@@ -115,7 +115,7 @@ export default function BlogPage() {
                       </span>
                     </div>
                     <div className="p-6">
-                      <div className="flex items-center gap-3 mb-3">
+                      <div className="flex items-center justify-center gap-3 mb-3">
                         <span
                           className="px-2 py-0.5"
                           style={{
