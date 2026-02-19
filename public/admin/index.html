@@ -5,15 +5,193 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>The Signature Studio — Admin</title>
-    <style>
-      body { font-family: 'Outfit', sans-serif; }
-    </style>
   </head>
   <body>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
-      // Register a preview style so the CMS preview pane looks closer to the site
-      CMS.registerPreviewStyle("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap");
+      CMS.init({
+        config: {
+          backend: {
+            name: "github",
+            repo: "sarahgloman-web/the-signature-studio",
+            branch: "master",
+            auth_type: "pkce",
+            app_id: "Ov23liHNNWkREucLJF8E",
+          },
+          media_folder: "public/images/uploads",
+          public_folder: "/images/uploads",
+          slug: {
+            encoding: "ascii",
+            clean_accents: true,
+            sanitize_replacement: "-",
+          },
+          collections: [
+            {
+              name: "blog",
+              label: "Blog Posts",
+              label_singular: "Blog Post",
+              folder: "posts",
+              create: true,
+              delete: true,
+              slug: "{{slug}}",
+              extension: "md",
+              sort: "date:desc",
+              summary: "{{title}} — {{date}}",
+              fields: [
+                {
+                  label: "Title",
+                  name: "title",
+                  widget: "string",
+                  hint: "The headline of your blog post",
+                },
+                {
+                  label: "Publish Date",
+                  name: "date",
+                  widget: "datetime",
+                  format: "YYYY-MM-DD",
+                  date_format: "MMMM D, YYYY",
+                  time_format: false,
+                  hint: "When this post goes live",
+                },
+                {
+                  label: "Tag / Category",
+                  name: "tag",
+                  widget: "select",
+                  options: [
+                    "Spring Edit",
+                    "Summer Edit",
+                    "Fall Edit",
+                    "Winter Edit",
+                    "Beauty",
+                    "Home",
+                    "Fashion",
+                    "Jewelry",
+                    "Lifestyle",
+                    "Gift Guide",
+                    "The Edit",
+                  ],
+                  default: "The Edit",
+                  hint: "Category label shown on the post card",
+                },
+                {
+                  label: "Tag Color",
+                  name: "tagColor",
+                  widget: "select",
+                  options: [
+                    { label: "Sage Green", value: "sage" },
+                    { label: "Dusty Rose", value: "dustyRose" },
+                    { label: "Gold", value: "gold" },
+                    { label: "Warm Brown", value: "warmBrown" },
+                    { label: "Soft Pink", value: "softPink" },
+                  ],
+                  default: "sage",
+                  hint: "Accent color for the tag badge",
+                },
+                {
+                  label: "Description",
+                  name: "description",
+                  widget: "text",
+                  hint: "Short preview text shown on blog cards and archive (1-2 sentences)",
+                },
+                {
+                  label: "Signature Number (Overall Post)",
+                  name: "signatureNumber",
+                  widget: "number",
+                  value_type: "float",
+                  min: 1,
+                  max: 10,
+                  step: 0.5,
+                  required: false,
+                  hint: "Your 1-10 rating for this post (9.5+ = Iconic, 9 = Obsessed, 8 = Must-Have, etc.)",
+                },
+                {
+                  label: "Featured Image",
+                  name: "image",
+                  widget: "image",
+                  required: false,
+                  hint: "Optional hero image for the post",
+                },
+                {
+                  label: "Products",
+                  name: "products",
+                  widget: "list",
+                  required: false,
+                  hint: "Add product cards that appear at the top of the post",
+                  summary: "{{fields.name}} — {{fields.brand}} ({{fields.price}})",
+                  fields: [
+                    {
+                      label: "Product Name",
+                      name: "name",
+                      widget: "string",
+                    },
+                    {
+                      label: "Brand",
+                      name: "brand",
+                      widget: "string",
+                    },
+                    {
+                      label: "Price",
+                      name: "price",
+                      widget: "string",
+                      hint: "Include the $ sign, e.g. $38",
+                    },
+                    {
+                      label: "Product Tag",
+                      name: "tag",
+                      widget: "select",
+                      options: [
+                        "Best Seller",
+                        "Editor's Pick",
+                        "Signature Scent",
+                        "Spring Table",
+                        "Trending",
+                        "Investment Piece",
+                        "Under $20",
+                        "Under $50",
+                        "Cult Favorite",
+                        "Budget Friendly",
+                        "Splurge Worthy",
+                        "Layering Must",
+                        "Easter Must",
+                        "Budget Chic",
+                        "Centerpiece",
+                        "New Arrival",
+                        "Staple",
+                      ],
+                      default: "Editor's Pick",
+                      required: false,
+                    },
+                    {
+                      label: "Affiliate Link",
+                      name: "url",
+                      widget: "string",
+                      required: false,
+                      hint: "Your affiliate URL for this product",
+                    },
+                    {
+                      label: "Signature Number",
+                      name: "signatureNumber",
+                      widget: "number",
+                      value_type: "float",
+                      min: 1,
+                      max: 10,
+                      step: 0.5,
+                      required: false,
+                      hint: "Your 1-10 rating for this specific product",
+                    },
+                  ],
+                },
+                {
+                  label: "Post Content",
+                  name: "body",
+                  widget: "markdown",
+                  hint: "Write your blog post here. Use headers, bold, links, images, and quotes.",
+                },
+              ],
+            },
+          ],
+        },
+      });
     </script>
   </body>
 </html>
