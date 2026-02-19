@@ -71,27 +71,45 @@ export default function HomePage() {
     <div>
       {/* HERO */}
       <section
-        className="relative min-h-screen flex items-center justify-center px-6"
         style={{
+          position: "relative",
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "0 24px",
           background: `linear-gradient(160deg, ${BRAND.deepBrown} 0%, ${BRAND.charcoal} 40%, #4A3F35 100%)`,
         }}
       >
         <div
-          className="absolute top-0 right-0 w-96 h-96 opacity-10"
           style={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            width: "24rem",
+            height: "24rem",
+            opacity: 0.1,
             background: `radial-gradient(circle, ${BRAND.gold} 0%, transparent 70%)`,
           }}
         />
         <div
-          className="absolute bottom-0 left-0 w-72 h-72 opacity-10"
           style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            width: "18rem",
+            height: "18rem",
+            opacity: 0.1,
             background: `radial-gradient(circle, ${BRAND.dustyRose} 0%, transparent 70%)`,
           }}
         />
 
         <div
-          className="relative text-center max-w-3xl mx-auto"
           style={{
+            position: "relative",
+            textAlign: "center",
+            maxWidth: "48rem",
+            margin: "0 auto",
             opacity: loaded ? 1 : 0,
             transform: loaded ? "translateY(0)" : "translateY(30px)",
             transition: "all 1.2s cubic-bezier(0.16, 1, 0.3, 1)",
@@ -131,13 +149,14 @@ export default function HomePage() {
           </h1>
 
           <p
-            className="max-w-lg mx-auto"
             style={{
               fontFamily: "'Outfit', sans-serif",
               fontSize: "0.9rem",
               color: BRAND.taupe,
               lineHeight: 1.9,
               marginBottom: "48px",
+              maxWidth: "32rem",
+              margin: "0 auto 48px",
               opacity: loaded ? 1 : 0,
               transition: "opacity 1s ease 0.6s",
             }}
@@ -157,8 +176,17 @@ export default function HomePage() {
         </div>
 
         <div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-          style={{ animation: "float 3s ease-in-out infinite" }}
+          style={{
+            position: "absolute",
+            bottom: "32px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "8px",
+            animation: "float 3s ease-in-out infinite",
+          }}
         >
           <span
             style={{
@@ -172,8 +200,9 @@ export default function HomePage() {
             scroll
           </span>
           <div
-            className="w-px h-8"
             style={{
+              width: "1px",
+              height: "32px",
               background: `linear-gradient(to bottom, ${BRAND.taupe}40, transparent)`,
             }}
           />
@@ -181,9 +210,9 @@ export default function HomePage() {
       </section>
 
       {/* BRAND PILLARS */}
-      <section className="py-24 px-6" style={{ background: BRAND.warmWhite }}>
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
+      <section style={{ padding: "96px 24px", background: BRAND.warmWhite }}>
+        <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "64px" }}>
             <p
               style={{
                 fontFamily: "'Outfit', sans-serif",
@@ -208,29 +237,33 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "32px" }}>
             {pillars.map((pillar) => (
               <Link
                 key={pillar.title}
                 href={pillar.href}
-                className="group text-center p-8 transition-all duration-500 hover:-translate-y-1"
                 style={{
+                  textAlign: "center",
+                  padding: "32px",
                   background: BRAND.cream,
                   border: `1px solid ${BRAND.blush}`,
                   textDecoration: "none",
                   display: "block",
+                  transition: "transform 0.5s",
                 }}
+                onMouseEnter={e => e.currentTarget.style.transform = "translateY(-4px)"}
+                onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
               >
-                <div className="flex items-center justify-center gap-4 mb-6">
-                  <span className="text-3xl">{pillar.icon}</span>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "16px", marginBottom: "24px" }}>
+                  <span style={{ fontSize: "1.875rem" }}>{pillar.icon}</span>
                   <span
-                    className="px-3 py-1"
                     style={{
                       fontFamily: "'Outfit', sans-serif",
                       fontSize: "0.55rem",
                       letterSpacing: "0.2em",
                       color: pillar.tagColor,
                       border: `1px solid ${pillar.tagColor}40`,
+                      padding: "4px 12px",
                     }}
                   >
                     {pillar.tag}
@@ -276,9 +309,9 @@ export default function HomePage() {
       </section>
 
       {/* SHOPPING CATEGORIES */}
-      <section className="py-24 px-6" style={{ background: BRAND.cream }}>
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
+      <section style={{ padding: "96px 24px", background: BRAND.cream }}>
+        <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "64px" }}>
             <p
               style={{
                 fontFamily: "'Outfit', sans-serif",
@@ -303,12 +336,11 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px" }}>
             {categories.map((cat) => (
               <Link
                 key={cat.title}
                 href="/blog"
-                className="group p-8 text-center transition-all duration-500 hover:-translate-y-1 hover:shadow-lg"
                 style={{
                   background: cat.gradient,
                   textDecoration: "none",
@@ -317,9 +349,14 @@ export default function HomePage() {
                   flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
+                  padding: "32px",
+                  textAlign: "center",
+                  transition: "transform 0.5s, box-shadow 0.5s",
                 }}
+                onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 10px 25px rgba(0,0,0,0.1)"; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
               >
-                <span className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300 block">
+                <span style={{ fontSize: "2.25rem", marginBottom: "16px", display: "block" }}>
                   {cat.emoji}
                 </span>
                 <h3

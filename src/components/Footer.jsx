@@ -33,14 +33,14 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="py-16 px-6" style={{ background: BRAND.charcoal }}>
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 text-center md:text-left">
-          <div className="md:col-span-1">
+    <footer style={{ padding: "64px 24px", background: BRAND.charcoal }}>
+      <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "48px", marginBottom: "48px", textAlign: "center" }}>
+          <div>
             <Logo size="sm" light />
             <p
-              className="mt-4"
               style={{
+                marginTop: "16px",
                 fontFamily: "'Outfit', sans-serif",
                 fontSize: "0.8rem",
                 color: BRAND.taupe,
@@ -69,12 +69,14 @@ export default function Footer() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="block mb-3 transition-colors duration-300 hover:opacity-70"
                   style={{
+                    display: "block",
+                    marginBottom: "12px",
                     fontFamily: "'Outfit', sans-serif",
                     fontSize: "0.8rem",
                     color: BRAND.taupe,
                     textDecoration: "none",
+                    transition: "opacity 0.3s",
                   }}
                 >
                   {link.label}
@@ -85,8 +87,11 @@ export default function Footer() {
         </div>
 
         <div
-          className="pt-8 text-center"
-          style={{ borderTop: "1px solid rgba(184,169,154,0.2)" }}
+          style={{
+            paddingTop: "32px",
+            textAlign: "center",
+            borderTop: "1px solid rgba(184,169,154,0.2)",
+          }}
         >
           <p
             style={{

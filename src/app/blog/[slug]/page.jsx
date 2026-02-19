@@ -32,12 +32,11 @@ export default async function BlogPost({ params }) {
 
   return (
     <div style={{ paddingTop: "80px" }}>
-      <section className="py-16 px-6" style={{ background: BRAND.warmWhite }}>
-        <article className="max-w-3xl mx-auto">
+      <section style={{ padding: "64px 24px", background: BRAND.warmWhite }}>
+        <article style={{ maxWidth: "48rem", margin: "0 auto" }}>
           {/* Header */}
-          <div className="flex items-center justify-center gap-3 mb-6">
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", marginBottom: "24px" }}>
             <span
-              className="px-3 py-1"
               style={{
                 fontFamily: "'Outfit', sans-serif",
                 fontSize: "0.6rem",
@@ -45,6 +44,7 @@ export default async function BlogPost({ params }) {
                 textTransform: "uppercase",
                 color: color,
                 border: `1px solid ${color}40`,
+                padding: "4px 12px",
               }}
             >
               {post.tag}
@@ -65,7 +65,6 @@ export default async function BlogPost({ params }) {
           </div>
 
           <h1
-            className="text-center"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
@@ -73,6 +72,7 @@ export default async function BlogPost({ params }) {
               color: BRAND.charcoal,
               lineHeight: 1.2,
               marginBottom: "24px",
+              textAlign: "center",
             }}
           >
             {post.title}
@@ -81,8 +81,12 @@ export default async function BlogPost({ params }) {
           {/* Signature Number Rating */}
           {post.signatureNumber && (
             <div
-              className="mb-8 p-6 flex items-center justify-center"
               style={{
+                marginBottom: "32px",
+                padding: "24px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 background: BRAND.cream,
                 border: `1px solid ${BRAND.blush}`,
               }}
@@ -93,13 +97,13 @@ export default async function BlogPost({ params }) {
 
           {/* Affiliate disclaimer */}
           <p
-            className="text-center"
             style={{
               fontFamily: "'Outfit', sans-serif",
               fontSize: "0.65rem",
               color: "rgba(184,169,154,0.6)",
               marginBottom: "24px",
               letterSpacing: "0.1em",
+              textAlign: "center",
             }}
           >
             This post may contain affiliate links. I may earn a small commission
@@ -108,26 +112,32 @@ export default async function BlogPost({ params }) {
 
           {/* Product cards from frontmatter */}
           {post.products && post.products.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "24px", marginBottom: "40px" }}>
               {post.products.map((product, i) => (
                 <div
                   key={i}
-                  className="group transition-all duration-300 hover:-translate-y-1"
                   style={{
+                    textAlign: "center",
                     background: BRAND.cream,
                     border: `1px solid ${BRAND.blush}`,
                     overflow: "hidden",
+                    transition: "transform 0.3s",
                   }}
                 >
                   <div
-                    className="h-44 flex items-center justify-center relative"
                     style={{
+                      height: "11rem",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      position: "relative",
                       background: `linear-gradient(135deg, ${BRAND.blush}60, ${BRAND.softPink}30)`,
                     }}
                   >
                     <span
-                      className="text-5xl opacity-30"
                       style={{
+                        fontSize: "3rem",
+                        opacity: 0.3,
                         fontFamily: "'Cormorant Garamond', serif",
                         fontStyle: "italic",
                       }}
@@ -136,8 +146,11 @@ export default async function BlogPost({ params }) {
                     </span>
                     {product.tag && (
                       <span
-                        className="absolute top-3 left-3 px-2 py-0.5"
                         style={{
+                          position: "absolute",
+                          top: "12px",
+                          left: "12px",
+                          padding: "2px 8px",
                           fontFamily: "'Outfit', sans-serif",
                           fontSize: "0.55rem",
                           letterSpacing: "0.1em",
@@ -150,7 +163,7 @@ export default async function BlogPost({ params }) {
                       </span>
                     )}
                   </div>
-                  <div className="p-5">
+                  <div style={{ padding: "20px" }}>
                     {product.brand && (
                       <p
                         style={{
@@ -175,7 +188,7 @@ export default async function BlogPost({ params }) {
                     >
                       {product.name}
                     </h4>
-                    <div className="flex items-center justify-between">
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "16px" }}>
                       <span
                         style={{
                           fontFamily: "'Outfit', sans-serif",
@@ -191,8 +204,8 @@ export default async function BlogPost({ params }) {
                           href={product.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-4 py-2 group-hover:opacity-80 transition-opacity"
                           style={{
+                            padding: "8px 16px",
                             fontFamily: "'Outfit', sans-serif",
                             fontSize: "0.65rem",
                             letterSpacing: "0.15em",
@@ -206,8 +219,8 @@ export default async function BlogPost({ params }) {
                         </a>
                       ) : (
                         <span
-                          className="px-4 py-2"
                           style={{
+                            padding: "8px 16px",
                             fontFamily: "'Outfit', sans-serif",
                             fontSize: "0.65rem",
                             letterSpacing: "0.15em",
@@ -220,9 +233,8 @@ export default async function BlogPost({ params }) {
                         </span>
                       )}
                     </div>
-                    {/* Inline Signature Number for individual products */}
                     {product.signatureNumber && (
-                      <div className="mt-3 pt-3" style={{ borderTop: `1px solid ${BRAND.blush}` }}>
+                      <div style={{ marginTop: "12px", paddingTop: "12px", borderTop: `1px solid ${BRAND.blush}` }}>
                         <SignatureNumber rating={product.signatureNumber} />
                       </div>
                     )}
@@ -240,8 +252,10 @@ export default async function BlogPost({ params }) {
 
           {/* Mid-post email capture */}
           <div
-            className="my-12 p-8 text-center"
             style={{
+              margin: "48px 0",
+              padding: "32px",
+              textAlign: "center",
               background: `linear-gradient(135deg, ${BRAND.blush}60, ${BRAND.cream})`,
               border: `1px solid ${BRAND.blush}`,
             }}

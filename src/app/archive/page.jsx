@@ -22,7 +22,7 @@ export default function ArchivePage() {
   return (
     <div style={{ paddingTop: "80px" }}>
       {/* Header */}
-      <section className="py-16 px-6 text-center" style={{ background: BRAND.cream }}>
+      <section style={{ padding: "64px 24px", textAlign: "center", background: BRAND.cream }}>
         <p
           style={{
             fontFamily: "'Outfit', sans-serif",
@@ -60,12 +60,13 @@ export default function ArchivePage() {
       </section>
 
       {/* Archive Groups */}
-      <section className="py-16 px-6" style={{ background: BRAND.warmWhite }}>
-        <div className="max-w-4xl mx-auto">
+      <section style={{ padding: "64px 24px", background: BRAND.warmWhite }}>
+        <div style={{ maxWidth: "56rem", margin: "0 auto" }}>
           {groups.length === 0 ? (
             <p
-              className="text-center py-12"
               style={{
+                textAlign: "center",
+                padding: "48px 0",
                 fontFamily: "'Outfit', sans-serif",
                 color: BRAND.taupe,
               }}
@@ -78,11 +79,18 @@ export default function ArchivePage() {
             </p>
           ) : (
             groups.map((group) => (
-              <div key={group.key} className="mb-12">
+              <div key={group.key} style={{ marginBottom: "48px" }}>
                 {/* Month/Year Header */}
                 <div
-                  className="flex items-center justify-center gap-4 mb-6"
-                  style={{ borderBottom: `1px solid ${BRAND.blush}`, paddingBottom: "12px" }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "16px",
+                    marginBottom: "24px",
+                    borderBottom: `1px solid ${BRAND.blush}`,
+                    paddingBottom: "12px",
+                  }}
                 >
                   <h2
                     style={{
@@ -95,7 +103,6 @@ export default function ArchivePage() {
                     {group.label}
                   </h2>
                   <span
-                    className="px-3 py-1"
                     style={{
                       fontFamily: "'Outfit', sans-serif",
                       fontSize: "0.6rem",
@@ -103,6 +110,7 @@ export default function ArchivePage() {
                       textTransform: "uppercase",
                       color: BRAND.taupe,
                       border: `1px solid ${BRAND.blush}`,
+                      padding: "4px 12px",
                     }}
                   >
                     {group.posts.length} {group.posts.length === 1 ? "post" : "posts"}
@@ -110,24 +118,35 @@ export default function ArchivePage() {
                 </div>
 
                 {/* Posts in this month */}
-                <div className="flex flex-col gap-4">
+                <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
                   {group.posts.map((post) => {
                     const color = TAG_COLORS[post.tagColor] || BRAND.sage;
                     return (
                       <Link
                         key={post.slug}
                         href={`/blog/${post.slug}`}
-                        className="group flex items-start gap-6 p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-sm"
                         style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "24px",
+                          padding: "24px",
+                          textAlign: "center",
                           background: BRAND.cream,
                           border: `1px solid ${BRAND.blush}`,
                           textDecoration: "none",
+                          transition: "transform 0.3s",
                         }}
                       >
                         {/* Date badge */}
                         <div
-                          className="flex-shrink-0 w-14 h-14 flex flex-col items-center justify-center"
                           style={{
+                            flexShrink: 0,
+                            width: "56px",
+                            height: "56px",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            justifyContent: "center",
                             background: `${color}20`,
                             border: `1px solid ${color}30`,
                           }}
@@ -158,10 +177,9 @@ export default function ArchivePage() {
                         </div>
 
                         {/* Post info */}
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 mb-2">
+                        <div style={{ flex: 1, minWidth: 0, textAlign: "left" }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
                             <span
-                              className="px-2 py-0.5"
                               style={{
                                 fontFamily: "'Outfit', sans-serif",
                                 fontSize: "0.55rem",
@@ -169,6 +187,7 @@ export default function ArchivePage() {
                                 textTransform: "uppercase",
                                 color: color,
                                 border: `1px solid ${color}40`,
+                                padding: "2px 8px",
                               }}
                             >
                               {post.tag}
@@ -199,8 +218,8 @@ export default function ArchivePage() {
 
                         {/* Arrow */}
                         <span
-                          className="flex-shrink-0 self-center group-hover:translate-x-1 transition-transform duration-300"
                           style={{
+                            flexShrink: 0,
                             fontFamily: "'Outfit', sans-serif",
                             fontSize: "0.8rem",
                             color: BRAND.warmBrown,

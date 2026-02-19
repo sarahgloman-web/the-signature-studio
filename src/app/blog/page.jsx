@@ -22,7 +22,7 @@ export default function BlogPage() {
   return (
     <div style={{ paddingTop: "80px" }}>
       {/* Blog Header */}
-      <section className="py-16 px-6 text-center" style={{ background: BRAND.cream }}>
+      <section style={{ padding: "64px 24px", textAlign: "center", background: BRAND.cream }}>
         <p
           style={{
             fontFamily: "'Outfit', sans-serif",
@@ -61,12 +61,13 @@ export default function BlogPage() {
       </section>
 
       {/* Posts Grid */}
-      <section className="py-16 px-6" style={{ background: BRAND.warmWhite }}>
-        <div className="max-w-6xl mx-auto">
+      <section style={{ padding: "64px 24px", background: BRAND.warmWhite }}>
+        <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
           {posts.length === 0 ? (
             <p
-              className="text-center py-12"
               style={{
+                textAlign: "center",
+                padding: "48px 0",
                 fontFamily: "'Outfit', sans-serif",
                 color: BRAND.taupe,
               }}
@@ -78,25 +79,26 @@ export default function BlogPage() {
               folder to get started.
             </p>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "32px" }}>
               {posts.map((post) => {
                 const color = TAG_COLORS[post.tagColor] || BRAND.sage;
                 return (
                   <Link
                     key={post.slug}
                     href={`/blog/${post.slug}`}
-                    className="group text-center transition-all duration-500 hover:-translate-y-1"
                     style={{
+                      textAlign: "center",
                       background: BRAND.cream,
                       border: `1px solid ${BRAND.blush}`,
                       overflow: "hidden",
                       textDecoration: "none",
                       display: "block",
+                      transition: "transform 0.5s",
                     }}
                   >
                     <div
-                      className="h-48"
                       style={{
+                        height: "12rem",
                         background: `linear-gradient(135deg, ${color}40, ${BRAND.blush}40)`,
                         display: "flex",
                         alignItems: "center",
@@ -114,10 +116,9 @@ export default function BlogPage() {
                         S
                       </span>
                     </div>
-                    <div className="p-6">
-                      <div className="flex items-center justify-center gap-3 mb-3">
+                    <div style={{ padding: "24px" }}>
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", marginBottom: "12px" }}>
                         <span
-                          className="px-2 py-0.5"
                           style={{
                             fontFamily: "'Outfit', sans-serif",
                             fontSize: "0.6rem",
@@ -125,6 +126,7 @@ export default function BlogPage() {
                             textTransform: "uppercase",
                             color: color,
                             border: `1px solid ${color}40`,
+                            padding: "2px 8px",
                           }}
                         >
                           {post.tag}
@@ -165,8 +167,9 @@ export default function BlogPage() {
                         {post.description}
                       </p>
                       <span
-                        className="inline-block mt-4 group-hover:translate-x-1 transition-transform duration-300"
                         style={{
+                          display: "inline-block",
+                          marginTop: "16px",
                           fontFamily: "'Outfit', sans-serif",
                           fontSize: "0.7rem",
                           letterSpacing: "0.15em",
