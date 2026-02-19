@@ -2,8 +2,8 @@ backend:
   name: github
   repo: sarahgloman-web/the-signature-studio
   branch: master
-  auth_type: pkce
-  app_id: Ov23liHNNWkREucLJF8E
+  base_url: https://the-signature-studio.vercel.app
+  auth_endpoint: /api/auth
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
