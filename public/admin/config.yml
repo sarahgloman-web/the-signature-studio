@@ -5,20 +5,15 @@ backend:
   auth_type: pkce
   app_id: Ov23liHNNWkREucLJF8E
 
-# Where uploaded images go
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
-# Slug settings
 slug:
   encoding: "ascii"
   clean_accents: true
   sanitize_replacement: "-"
 
 collections:
-  # ===========================
-  # BLOG POSTS
-  # ===========================
   - name: "blog"
     label: "Blog Posts"
     label_singular: "Blog Post"
@@ -91,7 +86,7 @@ collections:
         max: 10
         step: 0.5
         required: false
-        hint: "Your 1-10 rating for this post (9.5+ = Iconic, 9 = Obsessed, 8 = Must-Have, etc.)"
+        hint: "Your 1-10 rating (9.5+ Iconic, 9 Obsessed, 8 Must-Have, 7 Love It)"
 
       - label: "Featured Image"
         name: "image"
@@ -157,7 +152,7 @@ collections:
             max: 10
             step: 0.5
             required: false
-            hint: "Your 1-10 rating for this specific product"
+            hint: "Your 1-10 rating for this product"
 
       - label: "Post Content"
         name: "body"
