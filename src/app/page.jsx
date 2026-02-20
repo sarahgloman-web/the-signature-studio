@@ -529,7 +529,7 @@ export default function HomePage() {
             {shopCategories.map((cat) => (
               <Link
                 key={cat.slug}
-                href={`/shop?category=${cat.slug}`}
+                href={cat.slug === "starter-kits" ? "/shop/starter-kits" : `/shop?category=${cat.slug}`}
                 className="shop-all-grid-item"
                 style={{
                   background: cat.gradient,
