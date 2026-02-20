@@ -1,14 +1,16 @@
 "use client";
 import { BRAND } from "@/lib/brand";
 
+const fontSizes = { sm: "1.125rem", md: "1.5rem", lg: "2.25rem" };
+
 export default function Logo({ size = "md", light = false }) {
-  const sizes = { sm: "text-lg", md: "text-2xl", lg: "text-4xl" };
   return (
-    <div className="flex flex-col items-center">
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
       <span
-        className={`${sizes[size]} tracking-widest font-light`}
         style={{
           fontFamily: "'Cormorant Garamond', serif",
+          fontSize: fontSizes[size],
+          fontWeight: 300,
           color: light ? BRAND.cream : BRAND.charcoal,
           letterSpacing: "0.35em",
         }}
@@ -17,11 +19,13 @@ export default function Logo({ size = "md", light = false }) {
       </span>
       {size !== "sm" && (
         <span
-          className="text-xs tracking-widest mt-1 uppercase"
           style={{
             fontFamily: "'Outfit', sans-serif",
-            color: light ? BRAND.taupe : BRAND.warmBrown,
+            fontSize: "0.75rem",
             letterSpacing: "0.3em",
+            textTransform: "uppercase",
+            marginTop: "4px",
+            color: light ? BRAND.taupe : BRAND.warmBrown,
           }}
         >
           curated by sarah
