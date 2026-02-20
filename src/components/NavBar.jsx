@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 import { BRAND } from "@/lib/brand";
@@ -29,25 +30,59 @@ export default function NavBar() {
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        transition: "all 0.5s",
         background: scrolled ? "rgba(250,247,242,0.95)" : "transparent",
         backdropFilter: scrolled ? "blur(20px)" : "none",
         borderBottom: scrolled ? `1px solid ${BRAND.blush}` : "none",
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <Link href="/">
-          <Logo size="sm" light={!scrolled && isHome} />
+      <div
+        style={{
+          maxWidth: "80rem",
+          margin: "0 auto",
+          padding: "16px 24px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px" }}>
+          {/* SS logo mark - shows on all sizes */}
+          <Image
+            src="/ss-logo.png"
+            alt="SS Logo"
+            width={36}
+            height={36}
+            style={{
+              borderRadius: "50%",
+              objectFit: "cover",
+            }}
+          />
+          {/* Text logo - hidden on very small screens, visible on larger */}
+          <div style={{ display: "block" }}>
+            <Logo size="sm" light={!scrolled && isHome} />
+          </div>
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div
+          className="desktop-nav"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "32px",
+          }}
+        >
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="relative group"
               style={{
                 fontFamily: "'Outfit', sans-serif",
                 fontSize: "0.75rem",
@@ -61,35 +96,48 @@ export default function NavBar() {
                     : BRAND.cream,
                 transition: "color 0.3s",
                 textDecoration: "none",
+                position: "relative",
               }}
             >
               {link.label}
-              <span
-                className="absolute -bottom-1 left-0 h-px transition-all duration-300"
-                style={{
-                  width: pathname === link.href ? "100%" : "0%",
-                  background: BRAND.gold,
-                }}
-              />
-              <span
-                className="absolute -bottom-1 left-0 h-px transition-all duration-300 group-hover:w-full"
-                style={{ width: "0%", background: BRAND.taupe }}
-              />
+              {pathname === link.href && (
+                <span
+                  style={{
+                    position: "absolute",
+                    bottom: "-4px",
+                    left: 0,
+                    width: "100%",
+                    height: "1px",
+                    background: BRAND.gold,
+                  }}
+                />
+              )}
             </Link>
           ))}
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden flex flex-col gap-1.5 cursor-pointer"
+          className="mobile-menu-btn"
           onClick={() => setMenuOpen(!menuOpen)}
-          style={{ background: "none", border: "none", padding: "8px" }}
+          style={{
+            display: "none",
+            flexDirection: "column",
+            gap: "6px",
+            cursor: "pointer",
+            background: "none",
+            border: "none",
+            padding: "8px",
+          }}
         >
           {[0, 1, 2].map((i) => (
             <span
               key={i}
-              className="block w-6 h-px transition-all duration-300"
               style={{
+                display: "block",
+                width: "24px",
+                height: "1px",
+                transition: "all 0.3s",
                 background:
                   scrolled || !isHome ? BRAND.charcoal : BRAND.cream,
                 transform: menuOpen
@@ -109,8 +157,17 @@ export default function NavBar() {
       {/* Mobile Menu */}
       {menuOpen && (
         <div
-          className="md:hidden absolute top-full left-0 right-0 py-8 px-6 flex flex-col items-center gap-6"
+          className="mobile-menu"
           style={{
+            position: "absolute",
+            top: "100%",
+            left: 0,
+            right: 0,
+            padding: "32px 24px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "24px",
             background: "rgba(250,247,242,0.98)",
             backdropFilter: "blur(20px)",
             borderBottom: `1px solid ${BRAND.blush}`,
@@ -136,6 +193,16 @@ export default function NavBar() {
           ))}
         </div>
       )}
+
+      {/* Responsive CSS for desktop/mobile toggle */}
+      <style>{`
+        .desktop-nav { display: flex !important; }
+        .mobile-menu-btn { display: none !important; }
+        @media (max-width: 768px) {
+          .desktop-nav { display: none !important; }
+          .mobile-menu-btn { display: flex !important; }
+        }
+      `}</style>
     </nav>
   );
 }

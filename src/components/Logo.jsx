@@ -2,6 +2,7 @@
 import { BRAND } from "@/lib/brand";
 
 const fontSizes = { sm: "1.125rem", md: "1.5rem", lg: "2.25rem" };
+const subSizes = { sm: "0.6rem", md: "0.7rem", lg: "0.85rem" };
 
 export default function Logo({ size = "md", light = false }) {
   return (
@@ -17,20 +18,17 @@ export default function Logo({ size = "md", light = false }) {
       >
         THE SIGNATURE STUDIO
       </span>
-      {size !== "sm" && (
-        <span
-          style={{
-            fontFamily: "'Outfit', sans-serif",
-            fontSize: "0.75rem",
-            letterSpacing: "0.3em",
-            textTransform: "uppercase",
-            marginTop: "4px",
-            color: light ? BRAND.taupe : BRAND.warmBrown,
-          }}
-        >
-          curated by sarah
-        </span>
-      )}
+      <span
+        style={{
+          fontFamily: "'Outfit', sans-serif",
+          fontSize: subSizes[size],
+          letterSpacing: "0.3em",
+          marginTop: "2px",
+          color: light ? BRAND.taupe : BRAND.warmBrown,
+        }}
+      >
+        by sarah
+      </span>
     </div>
   );
 }

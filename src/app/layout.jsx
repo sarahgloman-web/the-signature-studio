@@ -3,9 +3,13 @@ import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "The Signature Studio | Curated by Sarah",
+  title: "The Signature Studio | By Sarah",
   description:
     "A curated world of chic finds, signature scents, and sparkling things — for women who love beautiful details and intentional living.",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     title: "The Signature Studio",
     description:
