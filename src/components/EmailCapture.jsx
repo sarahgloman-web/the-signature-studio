@@ -10,8 +10,6 @@ export default function EmailCapture({ variant = "default" }) {
     e?.preventDefault();
     if (!email.includes("@")) return;
 
-    // MailerLite integration
-    // Replace YOUR_MAILERLITE_GROUP_ID and YOUR_MAILERLITE_API_KEY below
     try {
       const res = await fetch("/api/subscribe", {
         method: "POST",
@@ -22,7 +20,6 @@ export default function EmailCapture({ variant = "default" }) {
         setSubmitted(true);
       }
     } catch {
-      // Fallback: still show success so the form doesn't get stuck
       setSubmitted(true);
     }
   };
@@ -31,13 +28,21 @@ export default function EmailCapture({ variant = "default" }) {
     return (
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col items-center gap-4 w-full max-w-md mx-auto"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "16px",
+          width: "100%",
+          maxWidth: "28rem",
+          margin: "0 auto",
+        }}
       >
         {!submitted ? (
           <>
             <p
-              className="text-center"
               style={{
+                textAlign: "center",
                 fontFamily: "'Outfit', sans-serif",
                 fontSize: "0.75rem",
                 letterSpacing: "0.2em",
@@ -47,14 +52,15 @@ export default function EmailCapture({ variant = "default" }) {
             >
               Join the signature edit — free weekly curated finds
             </p>
-            <div className="flex w-full gap-0">
+            <div style={{ display: "flex", width: "100%" }}>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your email"
-                className="flex-1 px-5 py-3.5 outline-none"
                 style={{
+                  flex: 1,
+                  padding: "14px 20px",
                   fontFamily: "'Outfit', sans-serif",
                   fontSize: "0.85rem",
                   letterSpacing: "0.05em",
@@ -62,12 +68,13 @@ export default function EmailCapture({ variant = "default" }) {
                   border: `1px solid ${BRAND.blush}`,
                   borderRight: "none",
                   color: BRAND.charcoal,
+                  outline: "none",
                 }}
               />
               <button
                 type="submit"
-                className="px-6 py-3.5 cursor-pointer transition-all duration-300 hover:opacity-80"
                 style={{
+                  padding: "14px 24px",
                   fontFamily: "'Outfit', sans-serif",
                   fontSize: "0.7rem",
                   letterSpacing: "0.2em",
@@ -76,6 +83,7 @@ export default function EmailCapture({ variant = "default" }) {
                   color: BRAND.cream,
                   border: "none",
                   whiteSpace: "nowrap",
+                  cursor: "pointer",
                 }}
               >
                 Join Free
@@ -84,8 +92,9 @@ export default function EmailCapture({ variant = "default" }) {
           </>
         ) : (
           <div
-            className="text-center py-4"
             style={{
+              textAlign: "center",
+              padding: "16px 0",
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "1.2rem",
               color: BRAND.warmBrown,
@@ -111,12 +120,12 @@ export default function EmailCapture({ variant = "default" }) {
   // Full section variant
   return (
     <section
-      className="py-20 px-6"
       style={{
+        padding: "80px 24px",
         background: `linear-gradient(135deg, ${BRAND.charcoal} 0%, ${BRAND.deepBrown} 100%)`,
       }}
     >
-      <div className="max-w-2xl mx-auto text-center">
+      <div style={{ maxWidth: "42rem", margin: "0 auto", textAlign: "center" }}>
         <p
           style={{
             fontFamily: "'Outfit', sans-serif",
@@ -158,27 +167,37 @@ export default function EmailCapture({ variant = "default" }) {
         {!submitted ? (
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto"
+            style={{
+              display: "flex",
+              gap: "12px",
+              maxWidth: "32rem",
+              margin: "0 auto",
+              flexWrap: "wrap",
+              justifyContent: "center",
+            }}
           >
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
-              className="flex-1 px-5 py-3.5 outline-none"
               style={{
+                flex: 1,
+                minWidth: "200px",
+                padding: "14px 20px",
                 fontFamily: "'Outfit', sans-serif",
                 fontSize: "0.85rem",
                 background: "rgba(255,255,255,0.08)",
-                border: `1px solid rgba(196,168,107,0.3)`,
+                border: "1px solid rgba(196,168,107,0.3)",
                 color: BRAND.cream,
                 letterSpacing: "0.05em",
+                outline: "none",
               }}
             />
             <button
               type="submit"
-              className="px-8 py-3.5 cursor-pointer transition-all duration-300 hover:opacity-90"
               style={{
+                padding: "14px 32px",
                 fontFamily: "'Outfit', sans-serif",
                 fontSize: "0.7rem",
                 letterSpacing: "0.2em",
@@ -188,6 +207,7 @@ export default function EmailCapture({ variant = "default" }) {
                 border: "none",
                 fontWeight: 500,
                 whiteSpace: "nowrap",
+                cursor: "pointer",
               }}
             >
               Get the Edit
