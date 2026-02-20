@@ -1,27 +1,84 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BRAND } from "@/lib/brand";
+
+function Sparkles() {
+  const [particles, setParticles] = useState([]);
+
+  useEffect(() => {
+    const newParticles = Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 6 + 3,
+      delay: Math.random() * 0.6,
+      duration: Math.random() * 1 + 0.8,
+      char: ["✦", "✧", "⋆", "·"][Math.floor(Math.random() * 4)],
+    }));
+    setParticles(newParticles);
+  }, []);
+
+  return (
+    <div
+      style={{
+        position: "absolute",
+        top: "-20px",
+        left: "-20px",
+        right: "-20px",
+        bottom: "-20px",
+        pointerEvents: "none",
+        overflow: "hidden",
+      }}
+    >
+      {particles.map((p) => (
+        <span
+          key={p.id}
+          style={{
+            position: "absolute",
+            left: `${p.x}%`,
+            top: `${p.y}%`,
+            fontSize: `${p.size}px`,
+            color: BRAND.gold,
+            animation: `sparkle-pop ${p.duration}s ease-out ${p.delay}s both`,
+            opacity: 0,
+          }}
+        >
+          {p.char}
+        </span>
+      ))}
+      <style>{`
+        @keyframes sparkle-pop {
+          0% { opacity: 0; transform: scale(0) translateY(10px); }
+          30% { opacity: 1; transform: scale(1.4) translateY(-5px); }
+          70% { opacity: 0.8; transform: scale(1) translateY(-10px); }
+          100% { opacity: 0; transform: scale(0.5) translateY(-20px); }
+        }
+      `}</style>
+    </div>
+  );
+}
 
 export default function EmailCapture({ variant = "default" }) {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e?.preventDefault();
-    if (!email.includes("@")) return;
+    if (!email.includes("@") || submitting) return;
 
+    setSubmitting(true);
     try {
-      const res = await fetch("/api/subscribe", {
+      await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
-      if (res.ok) {
-        setSubmitted(true);
-      }
     } catch {
-      setSubmitted(true);
+      // still show success to user
     }
+    setSubmitted(true);
+    setSubmitting(false);
   };
 
   if (variant === "hero") {
@@ -58,6 +115,7 @@ export default function EmailCapture({ variant = "default" }) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your email"
+                required
                 style={{
                   flex: 1,
                   padding: "14px 20px",
@@ -73,6 +131,7 @@ export default function EmailCapture({ variant = "default" }) {
               />
               <button
                 type="submit"
+                disabled={submitting}
                 style={{
                   padding: "14px 24px",
                   fontFamily: "'Outfit', sans-serif",
@@ -83,34 +142,55 @@ export default function EmailCapture({ variant = "default" }) {
                   color: BRAND.cream,
                   border: "none",
                   whiteSpace: "nowrap",
-                  cursor: "pointer",
+                  cursor: submitting ? "wait" : "pointer",
+                  opacity: submitting ? 0.7 : 1,
+                  transition: "opacity 0.3s",
                 }}
               >
-                Join Free
+                {submitting ? "..." : "Join Free"}
               </button>
             </div>
           </>
         ) : (
           <div
             style={{
+              position: "relative",
               textAlign: "center",
-              padding: "16px 0",
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "1.2rem",
-              color: BRAND.warmBrown,
+              padding: "24px 16px",
+              animation: "fade-up 0.6s ease-out both",
             }}
           >
-            Welcome to The Signature Edit
-            <br />
-            <span
+            <Sparkles />
+            <p
               style={{
-                fontFamily: "'Outfit', sans-serif",
-                fontSize: "0.75rem",
-                color: BRAND.taupe,
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: "1.4rem",
+                fontWeight: 400,
+                color: BRAND.gold,
+                marginBottom: "8px",
+                letterSpacing: "0.05em",
               }}
             >
-              Check your inbox for your free spring guide
-            </span>
+              You're in, babe ✦
+            </p>
+            <p
+              style={{
+                fontFamily: "'Outfit', sans-serif",
+                fontSize: "0.8rem",
+                color: BRAND.taupe,
+                lineHeight: 1.7,
+              }}
+            >
+              Your free weekly curated edits are on the way.
+              <br />
+              The chicest finds, delivered straight to your inbox.
+            </p>
+            <style>{`
+              @keyframes fade-up {
+                from { opacity: 0; transform: translateY(12px); }
+                to { opacity: 1; transform: translateY(0); }
+              }
+            `}</style>
           </div>
         )}
       </form>
@@ -161,8 +241,7 @@ export default function EmailCapture({ variant = "default" }) {
         >
           Every week I handpick the chicest new arrivals, hidden gems, and
           must-have products — delivered straight to your inbox before they sell
-          out. Plus, get my free Spring Shopping Guide with 50+ curated picks
-          when you join.
+          out.
         </p>
         {!submitted ? (
           <form
@@ -181,6 +260,7 @@ export default function EmailCapture({ variant = "default" }) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
+              required
               style={{
                 flex: 1,
                 minWidth: "200px",
@@ -196,6 +276,7 @@ export default function EmailCapture({ variant = "default" }) {
             />
             <button
               type="submit"
+              disabled={submitting}
               style={{
                 padding: "14px 32px",
                 fontFamily: "'Outfit', sans-serif",
@@ -207,21 +288,53 @@ export default function EmailCapture({ variant = "default" }) {
                 border: "none",
                 fontWeight: 500,
                 whiteSpace: "nowrap",
-                cursor: "pointer",
+                cursor: submitting ? "wait" : "pointer",
+                opacity: submitting ? 0.7 : 1,
+                transition: "opacity 0.3s",
               }}
             >
-              Get the Edit
+              {submitting ? "..." : "Get the Edit"}
             </button>
           </form>
         ) : (
           <div
             style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "1.3rem",
-              color: BRAND.gold,
+              position: "relative",
+              padding: "24px 16px",
+              animation: "fade-up 0.6s ease-out both",
             }}
           >
-            You&apos;re in! Check your inbox for your free guide
+            <Sparkles />
+            <p
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: "1.5rem",
+                fontWeight: 400,
+                color: BRAND.gold,
+                marginBottom: "8px",
+                letterSpacing: "0.05em",
+              }}
+            >
+              You're in, babe ✦
+            </p>
+            <p
+              style={{
+                fontFamily: "'Outfit', sans-serif",
+                fontSize: "0.85rem",
+                color: BRAND.taupe,
+                lineHeight: 1.8,
+              }}
+            >
+              Your free weekly curated edits are on the way.
+              <br />
+              The chicest finds, handpicked just for you — every week.
+            </p>
+            <style>{`
+              @keyframes fade-up {
+                from { opacity: 0; transform: translateY(12px); }
+                to { opacity: 1; transform: translateY(0); }
+              }
+            `}</style>
           </div>
         )}
         <p
