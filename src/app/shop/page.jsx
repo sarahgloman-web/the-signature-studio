@@ -1,21 +1,30 @@
+"use client";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useRef } from "react";
+import { Suspense } from "react";
 import EmailCapture from "@/components/EmailCapture";
 import { BRAND } from "@/lib/brand";
 
-export const metadata = {
-  title: "Shop — The Signature Studio",
-  description: "Browse all curated collections. Every product is personally selected and linked with love.",
-};
-
 const collections = [
-  { name: "Spring Edit", emoji: "\uD83C\uDF37", count: "25+ picks" },
-  { name: "Under $50", emoji: "\uD83D\uDCB0", count: "30+ picks" },
-  { name: "Jewelry & Accessories", emoji: "\u2728", count: "20+ picks" },
-  { name: "Home & Decor", emoji: "\uD83C\uDFE1", count: "15+ picks" },
-  { name: "Beauty & Scents", emoji: "\uD83C\uDF38", count: "18+ picks" },
-  { name: "Gifts for Her", emoji: "\uD83C\uDF81", count: "22+ picks" },
+  { name: "Signature Style", slug: "style", emoji: "\uD83D\uDC57", count: "25+ picks" },
+  { name: "Signature Scents", slug: "scents", emoji: "\uD83C\uDF38", count: "18+ picks" },
+  { name: "Signature Sparkle", slug: "sparkle", emoji: "\u2728", count: "20+ picks" },
+  { name: "Signature Space", slug: "space", emoji: "\uD83C\uDFE1", count: "15+ picks" },
+  { name: "Signature Skin", slug: "skin", emoji: "\uD83E\uDDF4", count: "18+ picks" },
+  { name: "Signature Starter Kits", slug: "starter-kits", emoji: "\uD83C\uDF81", count: "22+ picks" },
 ];
 
-export default function ShopPage() {
+function ShopContent() {
+  const searchParams = useSearchParams();
+  const category = searchParams.get("category");
+  const sectionRefs = useRef({});
+
+  useEffect(() => {
+    if (category && sectionRefs.current[category]) {
+      sectionRefs.current[category].scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [category]);
+
   return (
     <div style={{ paddingTop: "80px" }}>
       <section style={{ padding: "80px 24px", textAlign: "center", background: BRAND.cream }}>
@@ -80,14 +89,16 @@ export default function ShopPage() {
         <div style={{ maxWidth: "64rem", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "24px" }}>
           {collections.map((col) => (
             <div
-              key={col.name}
+              key={col.slug}
+              ref={(el) => { sectionRefs.current[col.slug] = el; }}
               style={{
                 padding: "32px",
                 textAlign: "center",
                 background: BRAND.cream,
-                border: `1px solid ${BRAND.blush}`,
+                border: `1px solid ${category === col.slug ? BRAND.gold : BRAND.blush}`,
+                boxShadow: category === col.slug ? `0 0 0 2px ${BRAND.gold}40` : "none",
                 cursor: "pointer",
-                transition: "transform 0.3s, box-shadow 0.3s",
+                transition: "transform 0.3s, box-shadow 0.3s, border-color 0.3s",
               }}
             >
               <span style={{ fontSize: "1.875rem", display: "block", marginBottom: "16px" }}>{col.emoji}</span>
@@ -117,5 +128,13 @@ export default function ShopPage() {
 
       <EmailCapture />
     </div>
+  );
+}
+
+export default function ShopPage() {
+  return (
+    <Suspense fallback={<div style={{ paddingTop: "80px", textAlign: "center", padding: "160px 24px" }}>Loading...</div>}>
+      <ShopContent />
+    </Suspense>
   );
 }

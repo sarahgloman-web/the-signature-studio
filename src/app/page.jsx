@@ -1,42 +1,16 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import EmailCapture from "@/components/EmailCapture";
+import SignatureNumber from "@/components/SignatureNumber";
 import { BRAND } from "@/lib/brand";
-
-const categories = [
-  {
-    title: "Fashion Finds",
-    sub: "Chic picks for every season",
-    gradient: `linear-gradient(135deg, ${BRAND.dustyRose}40, ${BRAND.softPink}60)`,
-    emoji: "\uD83D\uDC57",
-  },
-  {
-    title: "Beauty & Scents",
-    sub: "Gourmand perfumes & skincare gems",
-    gradient: `linear-gradient(135deg, ${BRAND.blush}80, ${BRAND.taupe}30)`,
-    emoji: "\uD83C\uDF38",
-  },
-  {
-    title: "Home Aesthetic",
-    sub: "Cozy, curated living spaces",
-    gradient: `linear-gradient(135deg, ${BRAND.sage}40, ${BRAND.cream})`,
-    emoji: "\uD83C\uDFE1",
-  },
-  {
-    title: "Jewelry & Accessories",
-    sub: "Dainty gold, pearls & sparkle",
-    gradient: `linear-gradient(135deg, ${BRAND.gold}30, ${BRAND.blush}60)`,
-    emoji: "\u2728",
-  },
-];
 
 const pillars = [
   {
     icon: "\uD83D\uDECD\uFE0F",
     title: "The Edit",
     sub: "Curated Shopping Finds",
-    desc: "Weekly handpicked fashion, beauty, home, and lifestyle products. Every item is tried, loved, or obsessively researched before it makes the edit.",
+    desc: "Weekly blog posts with curated finds, signature pairings, starter kits, scent stories, and more. Every pick is tried, loved, or obsessively researched.",
     href: "/blog",
     tag: "LIVE NOW",
     tagColor: BRAND.sage,
@@ -61,8 +35,68 @@ const pillars = [
   },
 ];
 
+const shelfProducts = [
+  { name: "Product 1", price: "$00", rating: 9, link: "#" },
+  { name: "Product 2", price: "$00", rating: 8.5, link: "#" },
+  { name: "Product 3", price: "$00", rating: 8, link: "#" },
+  { name: "Product 4", price: "$00", rating: 9.5, link: "#" },
+  { name: "Product 5", price: "$00", rating: 7.5, link: "#" },
+  { name: "Product 6", price: "$00", rating: 8, link: "#" },
+  { name: "Product 7", price: "$00", rating: 9, link: "#" },
+  { name: "Product 8", price: "$00", rating: 7, link: "#" },
+  { name: "Product 9", price: "$00", rating: 8.5, link: "#" },
+  { name: "Product 10", price: "$00", rating: 9, link: "#" },
+];
+
+const shopCategories = [
+  {
+    title: "Signature Style",
+    sub: "Fashion",
+    emoji: "\uD83D\uDC57",
+    slug: "style",
+    gradient: `linear-gradient(135deg, ${BRAND.dustyRose}40, ${BRAND.softPink}60)`,
+  },
+  {
+    title: "Signature Scents",
+    sub: "Fragrance + Candles",
+    emoji: "\uD83C\uDF38",
+    slug: "scents",
+    gradient: `linear-gradient(135deg, ${BRAND.blush}80, ${BRAND.taupe}30)`,
+  },
+  {
+    title: "Signature Sparkle",
+    sub: "Jewelry",
+    emoji: "\u2728",
+    slug: "sparkle",
+    gradient: `linear-gradient(135deg, ${BRAND.gold}30, ${BRAND.blush}60)`,
+  },
+  {
+    title: "Signature Space",
+    sub: "Home",
+    emoji: "\uD83C\uDFE1",
+    slug: "space",
+    gradient: `linear-gradient(135deg, ${BRAND.sage}40, ${BRAND.cream})`,
+  },
+  {
+    title: "Signature Skin",
+    sub: "Beauty",
+    emoji: "\uD83E\uDDF4",
+    slug: "skin",
+    gradient: `linear-gradient(135deg, ${BRAND.softPink}40, ${BRAND.blush}60)`,
+  },
+  {
+    title: "Signature Starter Kits",
+    sub: "Bundles",
+    emoji: "\uD83C\uDF81",
+    slug: "starter-kits",
+    gradient: `linear-gradient(135deg, ${BRAND.gold}30, ${BRAND.sage}60)`,
+  },
+];
+
 export default function HomePage() {
   const [loaded, setLoaded] = useState(false);
+  const scrollRef = useRef(null);
+
   useEffect(() => {
     setTimeout(() => setLoaded(true), 100);
   }, []);
@@ -308,10 +342,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SHOPPING CATEGORIES */}
+      {/* THIS WEEK'S SIGNATURE SHELF */}
       <section style={{ padding: "96px 24px", background: BRAND.cream }}>
         <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: "64px" }}>
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
             <p
               style={{
                 fontFamily: "'Outfit', sans-serif",
@@ -322,7 +356,147 @@ export default function HomePage() {
                 marginBottom: "12px",
               }}
             >
-              Shop by Category
+              Updated Every Monday
+            </p>
+            <h2
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
+                fontWeight: 300,
+                color: BRAND.charcoal,
+                marginBottom: "12px",
+              }}
+            >
+              This Week&apos;s Signature Shelf
+            </h2>
+            <p
+              style={{
+                fontFamily: "'Outfit', sans-serif",
+                fontSize: "0.85rem",
+                color: BRAND.taupe,
+                lineHeight: 1.8,
+              }}
+            >
+              10 curated picks, refreshed every Monday.
+            </p>
+          </div>
+
+          {/* Horizontal scroll container */}
+          <div
+            ref={scrollRef}
+            style={{
+              display: "flex",
+              gap: "20px",
+              overflowX: "auto",
+              scrollBehavior: "smooth",
+              paddingBottom: "16px",
+              scrollbarWidth: "thin",
+              scrollbarColor: `${BRAND.blush} transparent`,
+            }}
+          >
+            {shelfProducts.map((product, i) => (
+              <a
+                key={i}
+                href={product.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  flex: "0 0 220px",
+                  background: BRAND.warmWhite,
+                  border: `1px solid ${BRAND.blush}`,
+                  padding: "24px 20px",
+                  textAlign: "center",
+                  textDecoration: "none",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "12px",
+                  transition: "transform 0.3s, box-shadow 0.3s",
+                }}
+                onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.08)"; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+              >
+                {/* Placeholder image area */}
+                <div
+                  style={{
+                    width: "100%",
+                    aspectRatio: "1",
+                    background: BRAND.blush,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginBottom: "8px",
+                  }}
+                >
+                  <span style={{ fontFamily: "'Outfit', sans-serif", fontSize: "0.65rem", color: BRAND.taupe }}>
+                    Image
+                  </span>
+                </div>
+
+                <h3
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontSize: "1.1rem",
+                    fontWeight: 400,
+                    color: BRAND.charcoal,
+                  }}
+                >
+                  {product.name}
+                </h3>
+
+                <p
+                  style={{
+                    fontFamily: "'Outfit', sans-serif",
+                    fontSize: "0.85rem",
+                    color: BRAND.warmBrown,
+                    fontWeight: 500,
+                  }}
+                >
+                  {product.price}
+                </p>
+
+                <SignatureNumber rating={product.rating} />
+              </a>
+            ))}
+          </div>
+
+          {/* View all link */}
+          <div style={{ textAlign: "center", marginTop: "40px" }}>
+            <Link
+              href="/shelf"
+              style={{
+                fontFamily: "'Outfit', sans-serif",
+                fontSize: "0.75rem",
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                color: BRAND.warmBrown,
+                textDecoration: "none",
+                borderBottom: `1px solid ${BRAND.warmBrown}40`,
+                paddingBottom: "4px",
+                transition: "color 0.3s",
+              }}
+            >
+              View all &rarr;
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* SHOP ALL */}
+      <section style={{ padding: "96px 24px", background: BRAND.warmWhite }}>
+        <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
+            <p
+              style={{
+                fontFamily: "'Outfit', sans-serif",
+                fontSize: "0.65rem",
+                letterSpacing: "0.3em",
+                textTransform: "uppercase",
+                color: BRAND.gold,
+                marginBottom: "12px",
+              }}
+            >
+              Browse by Category
             </p>
             <h2
               style={{
@@ -332,15 +506,31 @@ export default function HomePage() {
                 color: BRAND.charcoal,
               }}
             >
-              This Week&apos;s Curated Finds
+              Shop All
             </h2>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px" }}>
-            {categories.map((cat) => (
+          <style>{`
+            @media (max-width: 768px) {
+              .shop-all-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            }
+            @media (max-width: 480px) {
+              .shop-all-grid { grid-template-columns: 1fr !important; }
+            }
+          `}</style>
+          <div
+            className="shop-all-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: "16px",
+            }}
+          >
+            {shopCategories.map((cat) => (
               <Link
-                key={cat.title}
-                href="/blog"
+                key={cat.slug}
+                href={`/shop?category=${cat.slug}`}
+                className="shop-all-grid-item"
                 style={{
                   background: cat.gradient,
                   textDecoration: "none",
