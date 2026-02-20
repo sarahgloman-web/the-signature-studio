@@ -59,20 +59,22 @@ export default function NavBar() {
               borderRadius: "50%",
               overflow: "hidden",
               flexShrink: 0,
+              position: "relative",
             }}
           >
             <Image
               src="/ss-logo.png"
               alt="SS Logo"
-              width={120}
-              height={120}
+              width={200}
+              height={200}
               style={{
-                width: "150%",
-                height: "150%",
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%) scale(1.6)",
+                width: "100%",
+                height: "100%",
                 objectFit: "cover",
-                objectPosition: "center 40%",
-                marginLeft: "-25%",
-                marginTop: "-15%",
               }}
             />
           </div>
