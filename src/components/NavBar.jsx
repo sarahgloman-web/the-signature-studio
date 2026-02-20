@@ -52,22 +52,19 @@ export default function NavBar() {
           justifyContent: "space-between",
         }}
       >
-        <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px" }}>
-          {/* SS logo mark - shows on all sizes */}
+        <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "14px" }}>
+          {/* SS logo mark */}
           <Image
             src="/ss-logo.png"
             alt="SS Logo"
-            width={36}
-            height={36}
+            width={52}
+            height={52}
             style={{
-              borderRadius: "50%",
-              objectFit: "cover",
+              objectFit: "contain",
             }}
           />
-          {/* Text logo - hidden on very small screens, visible on larger */}
-          <div style={{ display: "block" }}>
-            <Logo size="sm" light={!scrolled && isHome} />
-          </div>
+          {/* Text logo */}
+          <Logo size="sm" light={!scrolled && isHome} />
         </Link>
 
         {/* Desktop Nav */}

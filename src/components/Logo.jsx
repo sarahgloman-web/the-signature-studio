@@ -4,9 +4,9 @@ import { BRAND } from "@/lib/brand";
 const fontSizes = { sm: "1.125rem", md: "1.5rem", lg: "2.25rem" };
 const subSizes = { sm: "0.6rem", md: "0.7rem", lg: "0.85rem" };
 
-export default function Logo({ size = "md", light = false }) {
+export default function Logo({ size = "md", light = false, center = false }) {
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: center ? "center" : "flex-start" }}>
       <span
         style={{
           fontFamily: "'Cormorant Garamond', serif",

@@ -37,7 +37,7 @@ export default function Footer() {
       <div style={{ maxWidth: "56rem", margin: "0 auto", textAlign: "center" }}>
         {/* Logo + Tagline */}
         <div style={{ marginBottom: "48px" }}>
-          <Logo size="sm" light />
+          <Logo size="sm" light center />
           <p
             style={{
               marginTop: "16px",
