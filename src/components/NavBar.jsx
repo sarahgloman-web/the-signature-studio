@@ -44,9 +44,7 @@ export default function NavBar() {
     >
       <div
         style={{
-          maxWidth: "80rem",
-          margin: "0 auto",
-          padding: "16px 24px",
+          padding: "16px 32px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -54,16 +52,30 @@ export default function NavBar() {
       >
         <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px" }}>
           {/* SS logo mark - oval */}
-          <Image
-            src="/ss-logo.png"
-            alt="SS Logo"
-            width={60}
-            height={60}
+          <div
             style={{
+              width: "48px",
+              height: "48px",
               borderRadius: "50%",
-              objectFit: "cover",
+              overflow: "hidden",
+              flexShrink: 0,
             }}
-          />
+          >
+            <Image
+              src="/ss-logo.png"
+              alt="SS Logo"
+              width={120}
+              height={120}
+              style={{
+                width: "150%",
+                height: "150%",
+                objectFit: "cover",
+                objectPosition: "center 40%",
+                marginLeft: "-25%",
+                marginTop: "-15%",
+              }}
+            />
+          </div>
           {/* Text logo - single line */}
           <Logo size="sm" light={!scrolled && isHome} inline />
         </Link>
