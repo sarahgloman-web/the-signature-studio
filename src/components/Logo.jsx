@@ -4,7 +4,39 @@ import { BRAND } from "@/lib/brand";
 const fontSizes = { sm: "1.125rem", md: "1.5rem", lg: "2.25rem" };
 const subSizes = { sm: "0.6rem", md: "0.7rem", lg: "0.85rem" };
 
-export default function Logo({ size = "md", light = false, center = false }) {
+export default function Logo({ size = "md", light = false, center = false, inline = false }) {
+  if (inline) {
+    // Single line: THE SIGNATURE STUDIO by sarah
+    return (
+      <div style={{ display: "flex", alignItems: "baseline", gap: "10px" }}>
+        <span
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: fontSizes[size],
+            fontWeight: 300,
+            color: light ? BRAND.cream : BRAND.charcoal,
+            letterSpacing: "0.35em",
+            whiteSpace: "nowrap",
+          }}
+        >
+          THE SIGNATURE STUDIO
+        </span>
+        <span
+          style={{
+            fontFamily: "'Outfit', sans-serif",
+            fontSize: subSizes[size],
+            letterSpacing: "0.3em",
+            color: light ? BRAND.taupe : BRAND.warmBrown,
+            whiteSpace: "nowrap",
+          }}
+        >
+          by sarah
+        </span>
+      </div>
+    );
+  }
+
+  // Stacked version (footer etc)
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: center ? "center" : "flex-start" }}>
       <span

@@ -52,20 +52,20 @@ export default function NavBar() {
           justifyContent: "space-between",
         }}
       >
-        <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "14px" }}>
-          {/* SS logo mark - oval/circular */}
+        <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px" }}>
+          {/* SS logo mark - oval */}
           <Image
             src="/ss-logo.png"
             alt="SS Logo"
-            width={46}
-            height={46}
+            width={60}
+            height={60}
             style={{
               borderRadius: "50%",
               objectFit: "cover",
             }}
           />
-          {/* Text logo */}
-          <Logo size="sm" light={!scrolled && isHome} />
+          {/* Text logo - single line */}
+          <Logo size="sm" light={!scrolled && isHome} inline />
         </Link>
 
         {/* Desktop Nav */}
