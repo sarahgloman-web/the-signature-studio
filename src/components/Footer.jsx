@@ -34,23 +34,25 @@ export default function Footer() {
 
   return (
     <footer style={{ padding: "64px 24px", background: BRAND.charcoal }}>
-      <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "48px", marginBottom: "48px", textAlign: "center" }}>
-          <div>
-            <Logo size="sm" light />
-            <p
-              style={{
-                marginTop: "16px",
-                fontFamily: "'Outfit', sans-serif",
-                fontSize: "0.8rem",
-                color: BRAND.taupe,
-                lineHeight: 1.8,
-              }}
-            >
-              Curating the chicest finds for women who love beautiful things.
-            </p>
-          </div>
+      <div style={{ maxWidth: "56rem", margin: "0 auto", textAlign: "center" }}>
+        {/* Logo + Tagline */}
+        <div style={{ marginBottom: "48px" }}>
+          <Logo size="sm" light />
+          <p
+            style={{
+              marginTop: "16px",
+              fontFamily: "'Outfit', sans-serif",
+              fontSize: "0.8rem",
+              color: BRAND.taupe,
+              lineHeight: 1.8,
+            }}
+          >
+            Curating the chicest finds for women who love beautiful things.
+          </p>
+        </div>
 
+        {/* Link Columns */}
+        <div style={{ display: "flex", justifyContent: "center", gap: "64px", flexWrap: "wrap", marginBottom: "48px" }}>
           {columns.map((col) => (
             <div key={col.title}>
               <p
@@ -76,7 +78,6 @@ export default function Footer() {
                     fontSize: "0.8rem",
                     color: BRAND.taupe,
                     textDecoration: "none",
-                    transition: "opacity 0.3s",
                   }}
                 >
                   {link.label}
@@ -86,10 +87,10 @@ export default function Footer() {
           ))}
         </div>
 
+        {/* Copyright */}
         <div
           style={{
             paddingTop: "32px",
-            textAlign: "center",
             borderTop: "1px solid rgba(184,169,154,0.2)",
           }}
         >
