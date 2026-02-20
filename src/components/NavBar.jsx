@@ -54,8 +54,8 @@ export default function NavBar() {
           {/* SS logo mark - oval */}
           <div
             style={{
-              width: "48px",
-              height: "48px",
+              width: "40px",
+              height: "52px",
               borderRadius: "50%",
               overflow: "hidden",
               flexShrink: 0,
