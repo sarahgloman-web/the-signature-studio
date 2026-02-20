@@ -53,14 +53,15 @@ export default function NavBar() {
         }}
       >
         <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "14px" }}>
-          {/* SS logo mark */}
+          {/* SS logo mark - oval/circular */}
           <Image
             src="/ss-logo.png"
             alt="SS Logo"
-            width={52}
-            height={52}
+            width={46}
+            height={46}
             style={{
-              objectFit: "contain",
+              borderRadius: "50%",
+              objectFit: "cover",
             }}
           />
           {/* Text logo */}
