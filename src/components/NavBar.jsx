@@ -8,7 +8,7 @@ import { BRAND } from "@/lib/brand";
 
 const mainLinks = [
   { href: "/", label: "Home" },
-  { href: "/blog", label: "The Signature Edit" },
+  { href: "/edit", label: "The Signature Edit" },
   { href: "/shop", label: "Shop", hasDropdown: "shop" },
   { href: "/shelf", label: "The Signature Shelf" },
   { label: "The Studio", hasDropdown: "studio" },
@@ -32,7 +32,7 @@ const studioSublinks = [
 
 const mobileLinks = [
   { href: "/", label: "Home" },
-  { href: "/blog", label: "The Signature Edit" },
+  { href: "/edit", label: "The Signature Edit" },
   { href: "/shop", label: "Shop" },
   { href: "/shelf", label: "The Signature Shelf" },
   { href: "/scents", label: "Signature Scents" },

@@ -33,7 +33,7 @@ export default function Footer() {
     {
       title: "Explore",
       links: [
-        { label: "The Signature Edit", href: "/blog" },
+        { label: "The Signature Edit", href: "/edit" },
         { label: "Shop", href: "/shop" },
         { label: "The Signature Shelf", href: "/shelf" },
         { label: "Archive", href: "/archive" },

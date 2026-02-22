@@ -289,7 +289,7 @@ export default function HomeClient({ featuredProducts, latestPosts }) {
             {latestPosts.map((post) => {
               const color = TAG_COLORS[post.tagColor] || BRAND.sage;
               return (
-                <Link key={post.slug} href={`/blog/${post.slug}`} style={{ textAlign: "center", background: BRAND.warmWhite, border: `1px solid ${BRAND.blush}`, overflow: "hidden", textDecoration: "none", display: "block", transition: "transform 0.5s" }}>
+                <Link key={post.slug} href={`/edit/${post.slug}`} style={{ textAlign: "center", background: BRAND.warmWhite, border: `1px solid ${BRAND.blush}`, overflow: "hidden", textDecoration: "none", display: "block", transition: "transform 0.5s" }}>
                   <div style={{ height: "12rem", background: `linear-gradient(135deg, ${color}40, ${BRAND.blush}40)`, display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "3rem", color: `${color}80`, fontStyle: "italic" }}>S</span>
                   </div>
@@ -310,7 +310,7 @@ export default function HomeClient({ featuredProducts, latestPosts }) {
           </div>
 
           <div style={{ textAlign: "center", marginTop: "40px" }}>
-            <Link href="/blog" style={{ fontFamily: "'Outfit', sans-serif", fontSize: "0.75rem", letterSpacing: "0.2em", textTransform: "uppercase", color: BRAND.warmBrown, textDecoration: "none", borderBottom: `1px solid ${BRAND.warmBrown}40`, paddingBottom: "4px" }}>
+            <Link href="/edit" style={{ fontFamily: "'Outfit', sans-serif", fontSize: "0.75rem", letterSpacing: "0.2em", textTransform: "uppercase", color: BRAND.warmBrown, textDecoration: "none", borderBottom: `1px solid ${BRAND.warmBrown}40`, paddingBottom: "4px" }}>
               Read all posts &rarr;
             </Link>
           </div>

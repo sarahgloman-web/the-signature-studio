@@ -4,9 +4,10 @@ import Footer from "@/components/Footer";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 export const metadata = {
-  title: "The Signature Studio | By Sarah",
+  title: "The Signature Studio by Sarah | Curated Finds for Women Who Love Beautiful Details",
   description:
-    "A curated world of chic finds, signature scents, and sparkling things — for women who love beautiful details and intentional living.",
+    "A curated world of chic finds, signature scents, and sparkling things — by sarah, for women who love beautiful details.",
+  metadataBase: new URL("https://the-signature-studio.vercel.app"),
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
