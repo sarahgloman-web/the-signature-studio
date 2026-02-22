@@ -1,0 +1,92 @@
+{
+  "categories": [
+    { "id": "signature-style", "name": "Signature Style", "slug": "style" },
+    { "id": "signature-scents", "name": "Signature Scents", "slug": "scents" },
+    { "id": "signature-sparkle", "name": "Signature Sparkle", "slug": "sparkle" },
+    { "id": "signature-space", "name": "Signature Space", "slug": "space" },
+    { "id": "signature-skin", "name": "Signature Skin", "slug": "skin" },
+    { "id": "signature-starter-kits", "name": "Signature Starter Kits", "slug": "starter-kits" }
+  ],
+  "products": [
+    {
+      "id": "le-labo-santal-33",
+      "title": "Santal 33 Eau de Parfum",
+      "slug": "le-labo-santal-33",
+      "imageUrl": "/images/products/le-labo-santal-33.jpg",
+      "price": "$250.00",
+      "signatureNumber": 9.5,
+      "shopMyUrl": "https://shopmy.us/products/placeholder-santal-33",
+      "category": "signature-scents",
+      "brand": "Le Labo",
+      "description": "The iconic woody scent that smells like a luxury boutique and never gets old.",
+      "tags": ["splurge", "everyday", "gift-guide"],
+      "signatureMoment": ["date-night", "main-character-walk"],
+      "dateAdded": "2026-02-01",
+      "featured": true
+    },
+    {
+      "id": "olive-piper-iona-ring",
+      "title": "Iona Twisted Gold Ring",
+      "slug": "olive-piper-iona-ring",
+      "imageUrl": "/images/products/olive-piper-iona-ring.jpg",
+      "price": "$38.00",
+      "signatureNumber": 9.0,
+      "shopMyUrl": "https://shopmy.us/products/placeholder-iona-ring",
+      "category": "signature-sparkle",
+      "brand": "Olive + Piper",
+      "description": "Dainty twisted gold ring that looks way more expensive than it is.",
+      "tags": ["under-50", "everyday", "new-find"],
+      "signatureMoment": ["main-character-walk", "morning-ritual"],
+      "dateAdded": "2026-02-10",
+      "featured": true
+    },
+    {
+      "id": "voluspa-baltic-amber-candle",
+      "title": "Baltic Amber Candle",
+      "slug": "voluspa-baltic-amber-candle",
+      "imageUrl": "/images/products/voluspa-baltic-amber-candle.jpg",
+      "price": "$36.00",
+      "signatureNumber": 8.5,
+      "shopMyUrl": "https://shopmy.us/products/placeholder-baltic-amber",
+      "category": "signature-space",
+      "brand": "Voluspa",
+      "description": "Warm amber and resin notes that make any room smell like a cozy fall evening.",
+      "tags": ["under-50", "gift-guide", "everyday"],
+      "signatureMoment": ["sunday-reset", "self-care", "hosting"],
+      "dateAdded": "2026-02-05",
+      "featured": true
+    },
+    {
+      "id": "summer-fridays-jet-lag-mask",
+      "title": "Jet Lag Mask",
+      "slug": "summer-fridays-jet-lag-mask",
+      "imageUrl": "/images/products/summer-fridays-jet-lag-mask.jpg",
+      "price": "$49.00",
+      "signatureNumber": 8.0,
+      "shopMyUrl": "https://shopmy.us/products/placeholder-jet-lag-mask",
+      "category": "signature-skin",
+      "brand": "Summer Fridays",
+      "description": "The cult-favorite hydrating mask that gives you that dewy just-landed glow.",
+      "tags": ["under-50", "travel-edit", "self-care"],
+      "signatureMoment": ["travel-edit", "self-care", "morning-ritual"],
+      "dateAdded": "2026-02-12",
+      "featured": true
+    },
+    {
+      "id": "mango-linen-blend-blazer",
+      "title": "Linen Blend Oversized Blazer",
+      "slug": "mango-linen-blend-blazer",
+      "imageUrl": "/images/products/mango-linen-blend-blazer.jpg",
+      "price": "$89.99",
+      "signatureNumber": 8.5,
+      "shopMyUrl": "https://shopmy.us/products/placeholder-linen-blazer",
+      "category": "signature-style",
+      "brand": "Mango",
+      "description": "The oversized linen blazer that instantly makes any outfit look put-together.",
+      "tags": ["new-find", "everyday", "spring-edit"],
+      "signatureMoment": ["main-character-walk", "hosting"],
+      "dateAdded": "2026-02-15",
+      "featured": true
+    }
+  ]
+}

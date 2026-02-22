@@ -27,7 +27,12 @@ export function getAllPosts() {
         description: data.description || "",
         signatureNumber: data.signatureNumber || null,
         image: data.image || null,
+        coverImage: data.coverImage || null,
         products: data.products || [],
+        productIds: data.productIds || [],
+        scentPairing: data.scentPairing || null,
+        category: data.category || null,
+        tags: data.tags || [],
       };
     });
 
@@ -53,7 +58,12 @@ export async function getPostBySlug(slug) {
     description: data.description || "",
     signatureNumber: data.signatureNumber || null,
     image: data.image || null,
+    coverImage: data.coverImage || null,
     products: data.products || [],
+    productIds: data.productIds || [],
+    scentPairing: data.scentPairing || null,
+    category: data.category || null,
+    tags: data.tags || [],
   };
 }
 
