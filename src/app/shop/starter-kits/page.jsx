@@ -12,7 +12,7 @@ const occasions = [
   {
     title: "Gifts",
     description: "Beautifully curated gift bundles for every celebration.",
-    emoji: "\uD83C\uDF81",
+    accent: BRAND.dustyRose,
     placeholders: ["Gift Set 1", "Gift Set 2", "Gift Set 3", "Gift Set 4"],
     gradient: `linear-gradient(135deg, ${BRAND.dustyRose}40, ${BRAND.softPink}60)`,
   },
@@ -20,7 +20,7 @@ const occasions = [
     title: "Bridal & Wedding",
     description:
       "Bridal party kits, bridesmaid gifts, and wedding-day essentials.",
-    emoji: "\uD83D\uDC8D",
+    accent: BRAND.softPink,
     placeholders: [
       "Bridal Kit",
       "Bridesmaid Set",
@@ -32,7 +32,7 @@ const occasions = [
   {
     title: "Holidays",
     description: "Seasonal kits for every holiday on the calendar.",
-    emoji: "\uD83C\uDF84",
+    accent: BRAND.sage,
     placeholders: [
       "Holiday Glow Kit",
       "Cozy Season Set",
@@ -44,7 +44,7 @@ const occasions = [
   {
     title: "New Home",
     description: "Housewarming bundles to make any space feel like home.",
-    emoji: "\uD83C\uDFE1",
+    accent: BRAND.taupe,
     placeholders: [
       "Welcome Home Kit",
       "Cozy Living Set",
@@ -57,7 +57,7 @@ const occasions = [
     title: "Aesthetic Vibes",
     description:
       "Clean girl, vanilla girl, coquette, and more — kits curated by aesthetic.",
-    emoji: "\u2728",
+    accent: BRAND.gold,
     placeholders: [
       "Clean Girl Kit",
       "Vanilla Girl Set",
@@ -137,10 +137,8 @@ export default function StarterKitsPage() {
               }}
             >
               <span
-                style={{ fontSize: "2rem", display: "block", marginBottom: "12px" }}
-              >
-                {occasion.emoji}
-              </span>
+                style={{ display: "block", width: "40px", height: "2px", background: occasion.accent, margin: "0 auto 16px", opacity: 0.7 }}
+              />
               <h2
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",

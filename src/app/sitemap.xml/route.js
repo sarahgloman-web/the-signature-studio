@@ -13,7 +13,6 @@ const staticPages = [
   { path: "/work-with-me", priority: "0.7", changefreq: "monthly" },
   { path: "/about", priority: "0.7", changefreq: "monthly" },
   { path: "/archive", priority: "0.5", changefreq: "monthly" },
-  { path: "/blog", priority: "0.8", changefreq: "weekly" },
 ];
 
 export async function GET() {

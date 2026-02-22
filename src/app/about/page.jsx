@@ -41,10 +41,8 @@ export default function AboutPage() {
             </h1>
           </div>
 
-          {/* Photo placeholder */}
-          <div style={{ width: "100%", maxWidth: "320px", aspectRatio: "3/4", margin: "0 auto 48px", background: `linear-gradient(135deg, ${BRAND.blush}60, ${BRAND.softPink}40)`, display: "flex", alignItems: "center", justifyContent: "center", border: `1px solid ${BRAND.blush}` }}>
-            <span style={{ fontFamily: "'Outfit', sans-serif", fontSize: "0.7rem", color: BRAND.taupe, letterSpacing: "0.1em" }}>Photo coming soon</span>
-          </div>
+          {/* Decorative accent — replace with photo when ready */}
+          <div style={{ width: "40px", height: "2px", background: BRAND.gold, margin: "0 auto 48px", opacity: 0.6 }} />
 
           {/* Personal story */}
           <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: "0.95rem", color: BRAND.charcoal, lineHeight: 2, textAlign: "center" }}>
