@@ -144,8 +144,46 @@ Your markdown content here...
 - `review` — Individual product review
 - `guide` — Shopping guide or how-to
 
-### Blog Filter Pills on /blog
-Filter by `postType`: All, Curated Finds, Signature Pairings, Scent Stories, Starter Kits
+### Blog Filter Tabs on /edit
+Filter by `postType`: All, Signature Shelf, Pairings, Starter Kits, Scent Stories, Calendar
+
+## Site Pages & URLs
+
+| URL | File | Type | Description |
+|-----|------|------|-------------|
+| `/` | `src/app/page.jsx` → `HomeClient.jsx` | Server+Client | Homepage: hero, pillars, featured products, shop categories, latest posts |
+| `/edit` | `src/app/edit/page.jsx` → `EditGrid.jsx` | Server+Client | The Signature Edit — all blog posts with filter tabs |
+| `/edit/[slug]` | `src/app/edit/[slug]/page.jsx` | Server (SSG) | Individual blog post with product embeds, scent pairing, related posts |
+| `/shop` | `src/app/shop/page.jsx` | Client | Shop page — category/tag filters, sort, ProductCards from products.json |
+| `/shop/starter-kits` | `src/app/shop/starter-kits/page.jsx` | Server | Occasion-based starter kits (Gifts, Bridal, Holidays, New Home, Aesthetic) |
+| `/shelf` | `src/app/shelf/page.jsx` → `ShelfClient.jsx` | Server+Client | The Signature Shelf — weekly picks + archive |
+| `/scents` | `src/app/scents/page.jsx` | Server | Signature Scents landing page |
+| `/sparkle` | `src/app/sparkle/page.jsx` | Server | Signature Sparkle landing page |
+| `/work-with-me` | `src/app/work-with-me/page.jsx` | Client | Collaboration page with contact form |
+| `/about` | `src/app/about/page.jsx` | Server | About Sarah, Signature Number explanation, social links |
+| `/archive` | `src/app/archive/page.jsx` | Server | Blog archive grouped by month |
+| `/blog` | `src/app/blog/page.jsx` | Redirect | Redirects to `/edit` |
+| `/blog/[slug]` | `src/app/blog/[slug]/page.jsx` | Redirect | Redirects to `/edit/[slug]` |
+| `/feed.xml` | `src/app/feed.xml/route.js` | Dynamic | RSS feed (auto-generated from posts) |
+| `/sitemap.xml` | `src/app/sitemap.xml/route.js` | Dynamic | Sitemap (auto-generated from all pages + posts) |
+
+### How to Update Content on Each Page
+
+**Homepage** — Edit `src/components/HomeClient.jsx`. Hero tagline, pillars section, "Shop by Signature" cards are all inline. Featured products come from `products.json` (set `featured: true`). Latest posts are auto-pulled from `posts/`.
+
+**The Signature Edit (blog)** — Add new `.md` files to `posts/`. They auto-appear on `/edit` and generate `/edit/[slug]` pages. Filter tabs use `postType` field.
+
+**Shop** — Add products to `data/products.json`. They auto-appear on `/shop` filtered by category/tags.
+
+**Starter Kits** — Edit `src/app/shop/starter-kits/page.jsx` to add real products to occasion sections.
+
+**Signature Shelf** — Posts with `postType: "signature-shelf"` appear here. Featured products from `products.json` show as "This Week's Picks".
+
+**Work With Me** — Edit `src/app/work-with-me/page.jsx` to update collaboration types, rates, or form fields.
+
+**About** — Edit `src/app/about/page.jsx` to update bio, photo (replace placeholder), or social links.
+
+**Scents / Sparkle** — Edit `src/app/scents/page.jsx` or `src/app/sparkle/page.jsx` for landing page content.
 
 ## Brand Colors (`src/lib/brand.js`)
 - `cream: "#FAF7F2"` — Primary background
@@ -164,7 +202,29 @@ Filter by `postType`: All, Curated Finds, Signature Pairings, Scent Stories, Sta
 - **Cormorant Garamond** (serif) — Headings, product titles, logo
 - **Outfit** (sans-serif) — Body text, labels, buttons
 
+## Key Components
+- `NavBar.jsx` — Fixed nav with Shop/Studio dropdowns, search, mobile hamburger menu
+- `Footer.jsx` — Email signup row, 3-column links, social links (Pinterest, TikTok, ShopMy)
+- `Logo.jsx` — Brand logo component (light/dark variants)
+- `EmailCapture.jsx` — Email signup CTA section
+- `SignatureNumber.jsx` — Gold circle rating badge
+- `EditGrid.jsx` — Blog listing grid with filter tabs (client component)
+- `ShelfClient.jsx` — Signature Shelf page content (client component)
+- `GoogleAnalytics.jsx` — GA4 tracking (uses `NEXT_PUBLIC_GA_MEASUREMENT_ID` env var)
+
+## Environment Variables (`.env.local`)
+- `MAILERLITE_API_KEY` — MailerLite API key for email subscriptions
+- `MAILERLITE_GROUP_ID` — MailerLite subscriber group ID
+- `NEXT_PUBLIC_GA_MEASUREMENT_ID` — Google Analytics 4 measurement ID
+
 ## Build & Deploy
-- `npm run build` — Build locally
+- `npm run build` — Build locally (requires `export PATH="$PATH:/c/Program Files/nodejs"` on this machine)
 - Push to `master` — Auto-deploys to Vercel
 - Site URL: https://the-signature-studio.vercel.app
+
+## Architecture Notes
+- **Server/Client split**: Pages that need `fs` (posts) or heavy data use server components that pass data as props to client components
+- **All inline styles** — No CSS modules or Tailwind; uses BRAND color constants
+- **trailingSlash: true** in `next.config.mjs`
+- **Affiliate links**: All product "Shop This" buttons link to ShopMy URLs
+- **SEO**: Each page has metadata exports; `/blog` redirects to `/edit` for URL migration
