@@ -107,7 +107,7 @@ export default function EmailCapture({ variant = "default" }) {
                 color: BRAND.taupe,
               }}
             >
-              Join the signature edit — free weekly curated finds
+              Join The Signature Edit — free weekly curated finds + my Spring Shopping Guide
             </p>
             <div style={{ display: "flex", width: "100%" }}>
               <input
