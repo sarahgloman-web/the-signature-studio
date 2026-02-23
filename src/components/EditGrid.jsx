@@ -111,8 +111,8 @@ export default function EditGrid({ posts }) {
                   }}
                 >
                   {/* Cover Image / Placeholder */}
-                  <div style={{ height: "11rem", background: `linear-gradient(135deg, ${color}40, ${BRAND.blush}40)`, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
-                    <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "3rem", color: `${color}80`, fontStyle: "italic" }}>S</span>
+                  <div style={{ height: "11rem", background: post.coverImage ? `url(${post.coverImage}) center/cover no-repeat` : `linear-gradient(135deg, ${color}40, ${BRAND.blush}40)`, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
+                    {!post.coverImage && <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "3rem", color: `${color}80`, fontStyle: "italic" }}>S</span>}
                     {/* Post type pill */}
                     <span style={{
                       position: "absolute",

@@ -290,8 +290,8 @@ export default function HomeClient({ featuredProducts, latestPosts }) {
               const color = TAG_COLORS[post.tagColor] || BRAND.sage;
               return (
                 <Link key={post.slug} href={`/edit/${post.slug}`} style={{ textAlign: "center", background: BRAND.warmWhite, border: `1px solid ${BRAND.blush}`, overflow: "hidden", textDecoration: "none", display: "block", transition: "transform 0.5s" }}>
-                  <div style={{ height: "12rem", background: `linear-gradient(135deg, ${color}40, ${BRAND.blush}40)`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "3rem", color: `${color}80`, fontStyle: "italic" }}>S</span>
+                  <div style={{ height: "12rem", background: post.coverImage ? `url(${post.coverImage}) center/cover no-repeat` : `linear-gradient(135deg, ${color}40, ${BRAND.blush}40)`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    {!post.coverImage && <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "3rem", color: `${color}80`, fontStyle: "italic" }}>S</span>}
                   </div>
                   <div style={{ padding: "24px" }}>
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", marginBottom: "12px" }}>

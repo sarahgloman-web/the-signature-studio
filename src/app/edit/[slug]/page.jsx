@@ -86,6 +86,17 @@ export default async function EditPost({ params }) {
             {post.title}
           </h1>
 
+          {/* Cover Image */}
+          {post.coverImage && (
+            <div style={{ marginBottom: "32px", overflow: "hidden" }}>
+              <img
+                src={post.coverImage}
+                alt={post.title}
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
+            </div>
+          )}
+
           {/* Signature Number Rating */}
           {post.signatureNumber && (
             <div style={{ marginBottom: "32px", padding: "24px", display: "flex", alignItems: "center", justifyContent: "center", background: BRAND.cream, border: `1px solid ${BRAND.blush}` }}>
@@ -178,8 +189,8 @@ export default async function EditPost({ params }) {
                 const c = TAG_COLORS[rp.tagColor] || BRAND.sage;
                 return (
                   <Link key={rp.slug} href={`/edit/${rp.slug}`} style={{ background: BRAND.warmWhite, border: `1px solid ${BRAND.blush}`, overflow: "hidden", textDecoration: "none", display: "block" }}>
-                    <div style={{ height: "10rem", background: `linear-gradient(135deg, ${c}40, ${BRAND.blush}40)`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "2.5rem", color: `${c}80`, fontStyle: "italic" }}>S</span>
+                    <div style={{ height: "10rem", background: rp.coverImage ? `url(${rp.coverImage}) center/cover no-repeat` : `linear-gradient(135deg, ${c}40, ${BRAND.blush}40)`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      {!rp.coverImage && <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "2.5rem", color: `${c}80`, fontStyle: "italic" }}>S</span>}
                     </div>
                     <div style={{ padding: "20px" }}>
                       <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.1rem", color: BRAND.charcoal, marginBottom: "6px", lineHeight: 1.3 }}>{rp.title}</h3>
