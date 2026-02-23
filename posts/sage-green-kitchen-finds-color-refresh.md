@@ -6,7 +6,7 @@ tagColor: "sage"
 postType: "curated-finds"
 description: "Sage green is the #1 kitchen color on Pinterest right now — here are 12 gorgeous finds to build your dream color-coordinated kitchen from scratch."
 signatureNumber: 9
-coverImage: "/images/blog/sage-green-kitchen.jpg"
+coverImage: "/images/blog/sage-green-kitchen.png"
 category: "home"
 tags: ["spring-edit", "new-find", "gift-guide"]
 productIds: ["kitchenaid-artisan-pistachio", "figmint-ceramic-frypan-set-sage", "haden-dorset-toaster-cedar-green", "keurig-k-mini-go-sage", "mackenzie-childs-sterling-check-tea-kettle", "west-elm-wiggle-cereal-bowls", "figmint-salt-pepper-grinder-sage", "fortessa-jupiter-tumblers-sage", "anthropologie-old-havana-butter-dish", "figmint-kitchen-towels-sage", "gelpro-diamond-kitchen-mat-green", "gdfstudio-zariel-bar-stools"]

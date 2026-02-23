@@ -6,7 +6,7 @@ tagColor: "dustyRose"
 postType: "curated-finds"
 description: "You worked hard. Here are 11 under-$50 finds across skincare, lip care, fragrance, accessories, and journaling that feel like a treat the moment you unbox them."
 signatureNumber: 9
-coverImage: "/images/blog/payday-treat-yourself.jpg"
+coverImage: "/images/blog/payday-treat-yourself.png"
 category: "lifestyle"
 tags: ["under-50", "self-care", "gift-guide", "spring-edit"]
 productIds: ["soft-services-buffing-bar", "osea-dream-lip-mask", "elf-thirst-burst-toner", "laneige-lip-glowy-balm", "vq-caramel-pistachio-sanitizer", "papier-wellness-journal", "burga-betty-leopard-tumbler", "capri-blue-honeydew-marble-candle", "burga-mob-wife-watch-band", "osea-gloss-go-keychain-duo"]
